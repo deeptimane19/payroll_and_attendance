@@ -1,0 +1,69 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "$2a$10$lmGzbPXlUIiMtsqvbC6tROFn8RDPJLIFo6DiTSjAXm1B20sXMBcT6",
+      "full_name": "System Admin",
+      "role": "admin",
+      "email": "admin@company.com",
+      "phone": "1234567890",
+      "salary": 50000,
+      "department": "Management",
+      "position": "Administrator",
+      "join_date": "2026-01-01",
+      "is_active": true,
+      "created_at": "2026-05-25T16:29:11.308Z"
+    },
+    {
+      "id": 2,
+      "username": "employee1",
+      "password": "$2a$10$jIgO5nzhSzJWiiU1l.bKiOe1ytGMkM2EsXeqFf9A9pmkFoREGvB3G",
+      "full_name": "John Doe",
+      "role": "employee",
+      "email": "john@company.com",
+      "phone": "9876543210",
+      "salary": 30000,
+      "department": "Development",
+      "position": "Developer",
+      "join_date": "2026-02-01",
+      "is_active": true,
+      "created_at": "2026-05-25T16:29:11.309Z"
+    }
+  ],
+  "attendance": [
+    {
+      "id": 1,
+      "user_id": 2,
+      "date": "2026-05-25",
+      "clock_in": "22:14:34",
+      "clock_out": "22:14:37",
+      "status": "present",
+      "remarks": null
+    }
+  ],
+  "payroll": [
+    {
+      "id": 1,
+      "user_id": 2,
+      "period": "2026-05",
+      "basic_salary": 30000,
+      "allowances": 0,
+      "deductions": 0,
+      "total_salary": 0,
+      "payment_date": "2026-05-25",
+      "status": "paid",
+      "total_working_days": 22,
+      "total_present": 0,
+      "total_absent": 0,
+      "total_late": 0,
+      "total_half_days": 0,
+      "remarks": null
+    }
+  ],
+  "nextIds": {
+    "users": 3,
+    "attendance": 2,
+    "payroll": 2
+  }
+}

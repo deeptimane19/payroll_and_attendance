@@ -35,15 +35,7 @@ app.use((err, req, res, next) => {
 
 async function start() {
   await db.initDefaultData();
-  // Initialize data store
-  db.readOnly(() => {});
-  // Delete old data.json to regenerate with proper hashes
-  const fs = require('fs');
-  const path = require('path');
-  const dataFile = path.join(__dirname, '..', 'data.json');
-  if (fs.existsSync(dataFile)) {
-    fs.unlinkSync(dataFile);
-  }
+  // Initialize data store - will create data.json if it doesn't exist
   db.readOnly(() => {});
   
   app.listen(PORT, () => {
