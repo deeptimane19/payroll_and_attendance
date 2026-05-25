@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/user_model.dart';
 import '../services/api_service.dart';
-import '../services/database_service.dart';
 
 class AuthProvider with ChangeNotifier {
   UserModel? _currentUser;
@@ -12,15 +11,33 @@ class AuthProvider with ChangeNotifier {
   bool get isLoggedIn => _currentUser != null;
   bool get isAdmin => _currentUser?.role == 'admin';
 
-  final DatabaseService _db = DatabaseService.instance;
-
   Future<String?> login(String username, String password) async {
     _isLoading = true;
     notifyListeners();
 
     try {
-      await _db.login(username, password);
-      _currentUser = await _db.getUserByUsername(username);
+      final result = await ApiService.login(username, password);
+      if (result.containsKey('error')) {
+        _isLoading = false;
+        notifyListeners();
+        return result['error'];
+      }
+      ApiService.setToken(result['token']);
+      final userData = result['user'];
+      _currentUser = UserModel(
+        id: userData['id'],
+        username: userData['username'],
+        password: '',
+        fullName: userData['fullName'],
+        role: userData['role'],
+        email: userData['email'],
+        phone: userData['phone'],
+        salary: (userData['salary'] as num?)?.toDouble(),
+        department: userData['department'],
+        position: userData['position'],
+        joinDate: userData['joinDate'],
+        isActive: userData['isActive'] ?? true,
+      );
       _isLoading = false;
       notifyListeners();
       return null;
